@@ -1,10 +1,25 @@
+// @ts-check
+
+
 // (in terminal) yarn add prop-types -D
 import PropTypes from "prop-types";
 
-import { useState } from "react";
+// import { useState } from "react";
+import React, { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+
+// this code below is "JS Doc" --> insert data (type)
+/**
+ * 
+ * @type {React.FC<{ name: string }>}
+ * @returns {React.ReactNode}
+ */
+
+
+
+
 
 // props is an immutable obj
 //---------------------------------------------------
@@ -51,9 +66,7 @@ function App() {
   return (
     <div className="App">
       <SelfIntroduction
-        name="BEAM"
-        dateOfBirth="22 Sep 1994"
-        hobbies={["test", "Eat"]}
+        name=""
       />
 
       <Test>
