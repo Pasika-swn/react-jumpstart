@@ -19,12 +19,10 @@ const SelfIntroduction = ({ name = "unknown", dateOfBirth, hobbies = [] }) => {
       {dateOfBirth ? <h2>I was born in {dateOfBirth}</h2> : null}
       {/* --------------------- */}
 
-
-
       {hobbies.length > 0 ? (
         //{/* อยากได้ JSX (no string) -> use .map() instead of .join() */}
         <div>
-        {/* <h2>My hobbies are: {hobbies.join(", ")}</h2> */}
+          {/* <h2>My hobbies are: {hobbies.join(", ")}</h2> */}
           <h2>My hobbies are: </h2>
           {hobbies.map((item, index) => (
             //{/* Must have KEY!!! */}
@@ -32,18 +30,36 @@ const SelfIntroduction = ({ name = "unknown", dateOfBirth, hobbies = [] }) => {
               {index + 1}. {item}
             </div>
           ))}
-        {/* {hobbies.map()} */}
+          {/* {hobbies.map()} */}
         </div>
       ) : null}
     </div>
   );
 };
 
+const Test = ({ children }) => {
+  console.log("tryingggg", children)
+  return <h2>{children}</h2>;
+};
+
 function App() {
   return (
     <div className="App">
-      <SelfIntroduction name="BEAM" dateOfBirth="22 Sep 1994" hobbies = {['test', "Eat"]} />
+      <SelfIntroduction
+        name="BEAM"
+        dateOfBirth="22 Sep 1994"
+        hobbies={["test", "Eat"]}
+      />
+
+    <Test>
+      <div>test2</div>
+      {/* 123 -> string not number */}
+      123 
+    </Test>
+
+
     </div>
+
   );
 }
 
