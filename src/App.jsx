@@ -1,3 +1,6 @@
+// (in terminal) yarn add prop-types -D
+import PropTypes from "prop-types";
+
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
@@ -36,9 +39,11 @@ const SelfIntroduction = ({ name = "unknown", dateOfBirth, hobbies = [] }) => {
     </div>
   );
 };
+SelfIntroduction.propTypes = {
+  name: PropTypes.string.isRequired,
+};
 
 const Test = ({ children }) => {
-  console.log("tryingggg", children)
   return <h2>{children}</h2>;
 };
 
@@ -51,15 +56,12 @@ function App() {
         hobbies={["test", "Eat"]}
       />
 
-    <Test>
-      <div>test2</div>
-      {/* 123 -> string not number */}
-      123 
-    </Test>
-
-
+      <Test>
+        <div>test2</div>
+        {/* 123 -> string not number */}
+        123
+      </Test>
     </div>
-
   );
 }
 
