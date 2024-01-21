@@ -18,8 +18,22 @@ const SelfIntroduction = ({ name = "unknown", dateOfBirth, hobbies = [] }) => {
       {/* write a short-if */}
       {dateOfBirth ? <h2>I was born in {dateOfBirth}</h2> : null}
       {/* --------------------- */}
+
+
+
       {hobbies.length > 0 ? (
-        <h2>My hobbies are: {hobbies.join(", ")}</h2>
+        //{/* อยากได้ JSX (no string) -> use .map() instead of .join() */}
+        <div>
+        {/* <h2>My hobbies are: {hobbies.join(", ")}</h2> */}
+          <h2>My hobbies are: </h2>
+          {hobbies.map((item, index) => (
+            //{/* Must have KEY!!! */}
+            <div key={item}>
+              {index + 1}. {item}
+            </div>
+          ))}
+        {/* {hobbies.map()} */}
+        </div>
       ) : null}
     </div>
   );
@@ -28,7 +42,7 @@ const SelfIntroduction = ({ name = "unknown", dateOfBirth, hobbies = [] }) => {
 function App() {
   return (
     <div className="App">
-      <SelfIntroduction name="BEAM" dateOfBirth="22 Sep 1994" hobbies = {['test']} />
+      <SelfIntroduction name="BEAM" dateOfBirth="22 Sep 1994" hobbies = {['test', "Eat"]} />
     </div>
   );
 }
