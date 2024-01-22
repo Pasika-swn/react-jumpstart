@@ -3,13 +3,24 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
+import "dayjs/locale/th";
+import dayjs from "dayjs";
+import buddhistEra from "dayjs/plugin/buddhistEra";
+import localizedFormat from "dayjs/plugin/localizedFormat";
+
+dayjs.locale("th");
+dayjs.extend(localizedFormat);
+dayjs.extend(buddhistEra);
+
 const SelfIntroduction = ({ name = "unknown", dateOfBirth, hobbies = [] }) => {
   return (
     <div>
       <h1>
         "My name is <span style={{ color: "tomato" }}>{name}</span>"
       </h1>
-      {dateOfBirth ? <h2>I was born in {dateOfBirth}</h2> : null}
+      {dateOfBirth ? (
+        <h2>I was born in {dayjs(dateOfBirth).format("D MMM BBBB")}</h2>
+      ) : null}
       {hobbies.length > 0 ? (
         <div>
           <h2>My hobbies are: </h2>
@@ -31,12 +42,10 @@ const Test = ({ children }) => {
 function App() {
   const [data, setData] = useState({ name: undefined, dob: undefined }); //เก็บเป็น obj โดย udf name ไปก่อน
   const [name, setName] = useState("");
-  const [dob, setDob] = useState("")
+  const [dob, setDob] = useState("");
 
   return (
     <div className="App">
-      {/* create an Input */}
-      {/* rerender ทุกๆครั้งที่พิมพ์ milli sec */}
       <label htmlFor="name">Name:</label>
       <input
         id="name"
@@ -48,6 +57,7 @@ function App() {
       <label htmlFor="dob">Date of Birth:</label>
       <input
         id="dob"
+        type="date"
         value={dob}
         onChange={(event) => {
           setDob(event.target.value);
@@ -57,15 +67,13 @@ function App() {
         onClick={() => {
           setData({ name, dob }); //remember value
           setName(""); //reset after click save button
-          setDob("")
-
+          setDob("");
         }}
       >
         Save
       </button>
 
       <SelfIntroduction
-        // name = {name ? name : undefined} //real-time (before use save button)
         name={data.name}
         dateOfBirth={data.dob}
         hobbies={["Playing Golf", "Boardgames"]}
