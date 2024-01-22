@@ -29,8 +29,9 @@ const Test = ({ children }) => {
 };
 
 function App() {
-  const [data, setData] = useState({name: undefined}) //เก็บเป็น obj โดย udf name ไปก่อน
+  const [data, setData] = useState({ name: undefined, dob: undefined }); //เก็บเป็น obj โดย udf name ไปก่อน
   const [name, setName] = useState("");
+  const [dob, setDob] = useState("")
 
   return (
     <div className="App">
@@ -44,10 +45,20 @@ function App() {
           setName(event.target.value);
         }}
       />
+      <label htmlFor="dob">Date of Birth:</label>
+      <input
+        id="dob"
+        value={dob}
+        onChange={(event) => {
+          setDob(event.target.value);
+        }}
+      />
       <button
         onClick={() => {
-          setData({ name }) //remember value
+          setData({ name, dob }); //remember value
           setName(""); //reset after click save button
+          setDob("")
+
         }}
       >
         Save
@@ -56,7 +67,7 @@ function App() {
       <SelfIntroduction
         // name = {name ? name : undefined} //real-time (before use save button)
         name={data.name}
-        dateOfBirth="22 Sep 1994"
+        dateOfBirth={data.dob}
         hobbies={["Playing Golf", "Boardgames"]}
       />
 
