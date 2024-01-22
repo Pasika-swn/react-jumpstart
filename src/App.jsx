@@ -84,6 +84,25 @@ function App() {
                 setHobbies(newHobbies);
               }}
             />
+            <button
+              onClick={() => {
+                // setHobbies(
+                //   hobbies.filter((hobby, hobbyIndex) => {
+                //     if (hobbyIndex === index) {
+                //       return false;
+                //     }
+                //     return true;
+                //   })
+                // );
+
+                // same as above
+                setHobbies(
+                  hobbies.filter((hobby, hobbyIndex) => hobbyIndex !== index)
+                )
+              }}
+            >
+              Del
+            </button>
           </div>
         ))}
         <button
