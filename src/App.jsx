@@ -70,23 +70,26 @@ function App() {
         {hobbies.map((item, index) => (
           //{/* พยายามอย่าใช้ keyเป็นindex -> bug */}
           <div key={index}>
-            <label htmlFor="hobby">Hobby</label>
+            <label htmlFor="hobby">Hobby {index + 1}:</label>
             <input
               id="hobby"
               value={item}
               onChange={(event) => {
                 const newValue = event.target.value;
+                const newHobbies = hobbies.map((hobby, hobbyIndex) =>
+                  hobbyIndex === index ? newValue : hobby
+                );
                 // setHobbies(hobbies.map((hobby, hobbyIndex) => {
                 //   if(index === hobbyIndex) {
                 //     return newValue
                 //   }
                 //   return hobby //ตัวเดียวกับ(hobby, hobbyIndex) //ถ้าไม่ใส่บรรทัดนี้ (return ค่าเดิมออกไป) ตัวอื่นๆจะโดน undefied
                 // }))
-
+                // ---------------------
                 // ความหมายเหมือนโค้ดที่คอมเม้นท์ไว้ด้านบนทุกประการ
-                setHobbies(
-                  hobbies.map((hobby, hobbyIndex) => hobbyIndex === index ? newValue : hobby)
-                )
+                // setHobbies(hobbies.map((hobby, hobbyIndex) =>
+                //   hobbyIndex === index ? newValue : hobby)
+                setHobbies(newHobbies);
               }}
             />
           </div>
