@@ -29,11 +29,28 @@ const Test = ({ children }) => {
 };
 
 function App() {
-  // useState('') -> add initial state ====> get array ['', f] => so use array destructuring
   const [name, setName] = useState("");
 
   return (
     <div className="App">
+      {/*create label+input -> button  */}
+      {/* [New] Rerender = เชื่อม state เข้าไปที่ UI */}
+      <label htmlFor="name">Name:</label>
+      <input
+        id="name"
+
+        // ส่งค่า state เข้า input ผ่าน value={name}
+        value={name}
+
+        //[นี่คือการดึงค่า จำ]:onChangeเพื่อให้พิมพ์เปลี่ยนแปลงได้ ->trigger event เมื่อกดอักษร
+        onChange={(event) => {
+          // save for reuse
+          setName(event.target.value);
+        }}
+      />
+      <button>Save</button>
+      {/* --------------------- */}
+
       <SelfIntroduction
         name="BEAM"
         dateOfBirth="22 Sep 1994"
