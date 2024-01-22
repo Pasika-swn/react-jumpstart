@@ -24,16 +24,18 @@ const SelfIntroduction = ({ name = "unknown", dateOfBirth, hobbies = [] }) => {
   );
 };
 
-
 const Test = ({ children }) => {
   return <h2>{children}</h2>;
 };
 
 function App() {
+  // useState('') -> add initial state ====> get array ['', f] => so use array destructuring
+  const [name, setName] = useState("");
+
   return (
     <div className="App">
       <SelfIntroduction
-        name = "BEAM"
+        name="BEAM"
         dateOfBirth="22 Sep 1994"
         hobbies={["Playing Golf", "Boardgames"]}
       />
