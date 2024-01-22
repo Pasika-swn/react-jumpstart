@@ -43,6 +43,7 @@ function App() {
   const [data, setData] = useState({ name: undefined, dob: undefined }); //เก็บเป็น obj โดย udf name ไปก่อน
   const [name, setName] = useState("");
   const [dob, setDob] = useState("");
+  const [hobbies, setHobbies] = useState([""]);
 
   return (
     <div className="App">
@@ -63,6 +64,18 @@ function App() {
           setDob(event.target.value);
         }}
       />
+      <div>
+        {hobbies.map((item, index) => (
+          //{/* พยายามอย่าใช้ keyเป็นindex -> bug */}
+          <div key={index}>
+            <label htmlFor="hobby">Hobby</label>
+            <input id="hobby" />
+          </div>
+        ))}
+        <button onClick={() => {
+          setHobbies([...hobbies, ""])
+        }}>Add another hobby</button>
+      </div>
       <button
         onClick={() => {
           setData({ name, dob }); //remember value
