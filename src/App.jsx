@@ -45,6 +45,8 @@ function App() {
   const [dob, setDob] = useState("");
   const [hobbies, setHobbies] = useState([""]);
 
+  console.log(hobbies);
+
   return (
     <div className="App">
       <label htmlFor="name">Name:</label>
@@ -69,12 +71,33 @@ function App() {
           //{/* พยายามอย่าใช้ keyเป็นindex -> bug */}
           <div key={index}>
             <label htmlFor="hobby">Hobby</label>
-            <input id="hobby" />
+            <input
+              id="hobby"
+              value={item}
+              onChange={(event) => {
+                const newValue = event.target.value;
+                // setHobbies(hobbies.map((hobby, hobbyIndex) => {
+                //   if(index === hobbyIndex) {
+                //     return newValue
+                //   }
+                //   return hobby //ตัวเดียวกับ(hobby, hobbyIndex) //ถ้าไม่ใส่บรรทัดนี้ (return ค่าเดิมออกไป) ตัวอื่นๆจะโดน undefied
+                // }))
+
+                // ความหมายเหมือนโค้ดที่คอมเม้นท์ไว้ด้านบนทุกประการ
+                setHobbies(
+                  hobbies.map((hobby, hobbyIndex) => hobbyIndex === index ? newValue : hobby)
+                )
+              }}
+            />
           </div>
         ))}
-        <button onClick={() => {
-          setHobbies([...hobbies, ""])
-        }}>Add another hobby</button>
+        <button
+          onClick={() => {
+            setHobbies([...hobbies, ""]);
+          }}
+        >
+          Add another hobby
+        </button>
       </div>
       <button
         onClick={() => {
