@@ -49,31 +49,37 @@ function App() {
 
   return (
     <div className="App">
-      <label htmlFor="name">Name:</label>
-      <input
-        id="name"
-        value={name}
-        onChange={(event) => {
-          setName(event.target.value);
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "160px 1fr 48px",
+          gap: "0.5rem",
         }}
-      />
-      <label htmlFor="dob">Date of Birth:</label>
-      <input
-        id="dob"
-        type="date"
-        value={dob}
-        onChange={(event) => {
-          setDob(event.target.value);
-        }}
-      />
-      <div>
+      >
+        <label htmlFor="name">Name:</label>
+        <input
+          id="name"
+          value={name}
+          onChange={(event) => {
+            setName(event.target.value);
+          }}
+          style={{ gridColumn: "span 2" }}
+        />
+        <label htmlFor="dob">Date of Birth:</label>
+        <input
+          id="dob"
+          type="date"
+          value={dob}
+          onChange={(event) => {
+            setDob(event.target.value);
+          }}
+          style={{ gridColumn: "span 2" }}
+        />
+
         {hobbies.map((item, index) => (
-          //{/* พยายามอย่าใช้ keyเป็นindex -> bug */}
-          <div key={index}>
+          <div key={index} style={{ display: 'contents' }}>
             <label htmlFor={`hobby-${index}`}>Hobby {index + 1}:</label>
             <input
-              //bug เพราะ id hobby เหมือนกัน
-              // id="hobby"
               id={`hobby-${index}`}
               value={item}
               onChange={(event) => {
@@ -86,22 +92,12 @@ function App() {
             />
             <button
               onClick={() => {
-                // setHobbies(
-                //   hobbies.filter((hobby, hobbyIndex) => {
-                //     if (hobbyIndex === index) {
-                //       return false;
-                //     }
-                //     return true;
-                //   })
-                // );
-
-                // same as above
                 setHobbies(
                   hobbies.filter((hobby, hobbyIndex) => hobbyIndex !== index)
-                )
+                );
               }}
             >
-              Del
+              -
             </button>
           </div>
         ))}
@@ -109,20 +105,22 @@ function App() {
           onClick={() => {
             setHobbies([...hobbies, ""]);
           }}
+          style={{ gridColumn: "2", width: "max-content" }}
         >
           Add another hobby
         </button>
-      </div>
-      <button
-        onClick={() => {
-          setData({ name, dob }); //remember value
-          setName(""); //reset after click save button
-          setDob("");
-        }}
-      >
-        Save
-      </button>
 
+        <button
+          onClick={() => {
+            setData({ name, dob }); //remember value
+            setName(""); //reset after click save button
+            setDob("");
+          }}
+          style={{ gridColumn: "1 / span 3", backgroundColor: "limegreen" }}
+        >
+          Save
+        </button>
+      </div>
       <SelfIntroduction
         name={data.name}
         dateOfBirth={data.dob}
