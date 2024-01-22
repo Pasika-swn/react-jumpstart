@@ -4,6 +4,7 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 
 import "dayjs/locale/th";
+import "@picocss/pico";
 import dayjs from "dayjs";
 import buddhistEra from "dayjs/plugin/buddhistEra";
 import localizedFormat from "dayjs/plugin/localizedFormat";
@@ -77,7 +78,7 @@ function App() {
         />
 
         {hobbies.map((item, index) => (
-          <div key={index} style={{ display: 'contents' }}>
+          <div key={index} style={{ display: "contents" }}>
             <label htmlFor={`hobby-${index}`}>Hobby {index + 1}:</label>
             <input
               id={`hobby-${index}`}
